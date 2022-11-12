@@ -9,22 +9,31 @@
   </head>
   <body>
     <header>
-      <h1>Guess My Number!</h1>
-      <p class="between">(Between 1 and 20)</p>
-      <button class="btn again">Again!</button>
-      <div class="number">?</div>
+      <h1>who's going to ... ?</h1>
+      <p class="between">(Between 0 participants and 0 options)</p>
+      <button class="btn reset">Reset!</button>
     </header>
     <main>
       <section class="left">
-        <input type="number" class="guess" />
-        <button class="btn check">Check!</button>
+        <input type="text" class="option" />
+        <button class="btn--add participate">Add Participant</button>
+        <br /><br />
+        <input type="text" class="option" />
+        <button class="btn--add option">Add Option</button>
       </section>
       <section class="right">
-        <p class="message">Start guessing...</p>
-        <p class="label-score">💯 Score: <span class="score">20</span></p>
-        <p class="label-highscore">
-          🥇 Highscore: <span class="highscore">0</span>
+        <p class="message">Start playing...</p>
+        <p class="message">Name --> decision</p>
+        <p class="label-decision">
+          <span class="decision">philip --> go on a date </span>
         </p>
+        <br />
+        <p class="remove-btns">
+          <button class="btn--remove option">Remove Option</button>
+          <button class="btn--remove participant">Remove Participant</button>
+        </p>
+        <br />
+        <br />
       </section>
     </main>
     <script src="script.js"></script>
