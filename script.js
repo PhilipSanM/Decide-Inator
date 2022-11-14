@@ -29,10 +29,9 @@ let participants = [
   'Luz',
   'Felipe',
   'Willbert',
-  'Ricardo',
-  'Ian',
-  'Aldo',
-  'Kevin',
+  'aldo',
+  'ian',
+  'sergio'
 ];
 let options = ['Lunes 21', 'Miercoles 23', 'Jueves 24'];
 
@@ -40,18 +39,63 @@ betwenMessage.textContent = `(Between ${participants.length} participants and ${
 
 let randomOption = 0;
 let randomParticipant = 0;
+
+//Ranges 
+let index = 0; //participants index
+let repited = [0, 0, 0]; //n person per day 
+
 // ================================================
 // ======== F U N  C  T  I O N S ==================
 // ================================================
 
+function saveData(name, day){
+  window.localStorage.setItem(name, day);
+}
+
+function clear_local_storage(){
+  window.localStorage.clear();
+}
+    
+
 const random = function (participants, options) {
-  randomParticipant = Math.trunc(Math.random() * participants.length) + 1;
-  randomOption = Math.trunc(Math.random() * options.length) + 1;
+  if(participants[index]!=undefined){
+  index++;
+  randomOption = Math.trunc(Math.random() * options.length) + 1; 
+  
+
+  switch(randomOption){
+    case 1:
+      repited[0]++;
+      break;
+    case 2:
+      repited[1]++;
+      break;
+    case 3:
+      repited[2]++;
+      break;
+  }
+  console.log(repited);
+  console.log(options);
+
+
   console.log(randomParticipant);
   console.log(randomOption);
-  labelDecision.textContent = `${participants[randomParticipant - 1]} --> ${
-    options[randomOption - 1]
-  }`;
+
+  labelDecision.textContent = `${participants[index - 1]} --> ${options[randomOption - 1]}`
+  saveData(participants[index-1], options[randomOption-1])
+  for(var i=0; i<options.length; i++){
+    if (repited[i]>1){
+      let temp = options.splice(i,1);
+      console.log(options);
+    }
+  }
+
+  console.log(participants[index-1]);
+  console.log("----------");
+  }else{
+    alert("There aren't participants left🙄")
+  }
+
 };
 
 const removeOption = function (options, randomOption) {
@@ -70,15 +114,22 @@ const addParticipant = function (participants, newParticipant) {
   console.log(participants);
   participants.push(newParticipant);
   console.log(participants);
+  betwenMessage.textContent = `(Between ${participants.length} participants and ${options.length} options)`;
 };
 
 const addOption = function (options, newOption) {
   options.push(newOption);
+  betwenMessage.textContent = `(Between ${participants.length} participants and ${options.length} options)`;
 };
 
 // ================================================
 // ======== E V E N T S H A N D L E R S ===========
 // ================================================
+
+resetBtn.addEventListener('click', function(e){
+  e.preventDefault();
+  clear_local_storage();
+});
 
 decideBtn.addEventListener('click', function (e) {
   e.preventDefault();
