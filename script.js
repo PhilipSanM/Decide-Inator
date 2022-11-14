@@ -33,6 +33,7 @@ let participants = [
   'Ian',
   'Aldo',
   'Kevin',
+  'Kadena',
 ];
 let options = ['Lunes 21', 'Miercoles 23', 'Jueves 24'];
 
